@@ -15,10 +15,10 @@ public class EnemyController : MonoBehaviour, IDamageable
     #region Unity
     private void Start()
     {
-        _idleState = new IdleState();
-        _chaseState = new ChaseState();
-        _attackState = new AttackState();
-        _dieState = new DieState();
+        _idleState = new IdleState(this);
+        _chaseState = new ChaseState(this);
+        _attackState = new AttackState(this);
+        _dieState = new DieState(this);
 
         _stateMachine = new StateMachine(_idleState);
     }
