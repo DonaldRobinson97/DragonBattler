@@ -3,10 +3,14 @@ using UnityEngine;
 
 public class PlayerCombatHandler : MonoBehaviour, IDamageable
 {
-    [SerializeField] private int health;
     [SerializeField] private bool isAlive = true;
     [SerializeField] private Animator _animator;
     private bool canAttack = true;
+
+    [Header("Health Handler")]
+    [SerializeField] private HealthHandler healthHandler;
+    [SerializeField] private int maxHealth;
+    private int currentHealth;
 
     #region Unity
     private void OnEnable()
@@ -24,15 +28,25 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     private void Start()
     {
         Initialise();
+        healthHandler.SetHealth(currentHealth, maxHealth);
+    }
+
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.D))
+        {
+            TakeDamage(20);
+        }
     }
     #endregion
 
     #region Public
     public void TakeDamage(int damage)
     {
-        if (health > 0)
+        if (currentHealth > 0)
         {
-            health -= damage;
+            currentHealth -= damage;
+            healthHandler.SetHealth(currentHealth, maxHealth);
         }
         else
         {
@@ -45,7 +59,7 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     #region Private
     private void Initialise()
     {
-        health = 150;
+        currentHealth = maxHealth;
         isAlive = true;
         canAttack = true;
     }

@@ -1,5 +1,4 @@
 using DG.Tweening;
-using Unity.Mathematics;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
@@ -16,6 +15,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask groundLayer;
     [SerializeField] private ParticleSystem markerObject;
 
+   
+
     #region Unity
     private void OnEnable()
     {
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
     {
         ClickTarget();
         FaceTarget();
+
+      
     }
 
     private void OnDisable()
