@@ -98,8 +98,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 6789667269452088267}
   moveSpeed: 10
-  lookDuration: 75
+  rotationSpeed: 5
   _animator: {fileID: 8111686315944717343}
+  EnemyTag: Enemy
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  markerObject: {fileID: 0}
 --- !u!114 &1799239690546256298
 MonoBehaviour:
   m_ObjectHideFlags: 0
