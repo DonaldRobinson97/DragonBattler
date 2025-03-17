@@ -20,7 +20,6 @@ public class CameraFollow : MonoBehaviour
     {
         Vector3 newPos = player.transform.position + offset;
         this.transform.position = Vector3.Lerp(transform.position, newPos, smoothSpeed * Time.deltaTime);
-        // this.transform.LookAt(player);
     }
     #endregion
 }
