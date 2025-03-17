@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class ChaseState : MonoBehaviour
+public class ChaseState : State
 {
     public void Enter()
     {

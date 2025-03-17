@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class DieState : MonoBehaviour
+public class DieState : State
 {
     public void Enter()
     {

@@ -743,7 +743,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1307401524}
   smoothSpeed: 100
-  offset: {x: 0, y: 25, z: -20}
+  offset: {x: 0, y: 25, z: -30}
 --- !u!224 &1063527075 stripped
 RectTransform:
   m_CorrespondingSourceObject: {fileID: 783066269477283601, guid: 9eb5d5cc477bbd44ca81548f5bd64085, type: 3}
@@ -1111,6 +1111,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 492388936181654783, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
+      propertyPath: EnemyTag
+      value: Enemy
+      objectReference: {fileID: 0}
     - target: {fileID: 2655848170374712976, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1208,13 +1212,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4126056889256222872, guid: 22f9b2ce54a1ba84493ac70c55ed2fd9, type: 3}
-      propertyPath: m_Controller
-      value: 
-      objectReference: {fileID: 9100000, guid: a977cd42ca66f1044b4981b015ba3641, type: 2}
     - target: {fileID: 4564371612067712818, guid: 22f9b2ce54a1ba84493ac70c55ed2fd9, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 4564371612067712818, guid: 22f9b2ce54a1ba84493ac70c55ed2fd9, type: 3}
+      propertyPath: m_Layer
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 8203688703663824197, guid: 22f9b2ce54a1ba84493ac70c55ed2fd9, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

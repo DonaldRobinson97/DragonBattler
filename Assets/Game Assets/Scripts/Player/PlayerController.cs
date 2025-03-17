@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float lookDuration = 10f;
     [SerializeField] private Animator _animator;
     private Tweener moveTweener;
+    [SerializeField] private string EnemyTag;
 
     #region Unity
     private void OnEnable()
@@ -24,6 +25,15 @@ public class PlayerController : MonoBehaviour
     {
         EventController.StopListening(GameEvent.EVENT_POSITION_MARKED, OnPositionMarked);
     }
+
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag(EnemyTag))
+        {
+            stopWalk();
+        }
+    }
     #endregion
 
     #region Public 
@@ -33,11 +43,7 @@ public class PlayerController : MonoBehaviour
     #region Private
     private void MovePlayer(Vector3 Pos)
     {
-        if (moveTweener != null)
-        {
-            _animator.SetBool("Walk", false);
-            moveTweener.Kill();
-        }
+        stopWalk();
 
         float distance = Vector3.Distance(Pos, rb.transform.position);
         float duration = distance / moveSpeed;
@@ -60,6 +66,15 @@ public class PlayerController : MonoBehaviour
         );
     }
 
+    private void stopWalk()
+    {
+        if (moveTweener != null)
+        {
+            moveTweener.Kill();
+            _animator.SetBool("Walk", false);
+        }
+    }
+
     float GetLookAtYRotation(Vector3 from, Vector3 to)
     {
         Vector3 direction = to - from;
@@ -67,7 +82,6 @@ public class PlayerController : MonoBehaviour
 
         return Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
     }
-
     #endregion
 
     #region Callbacks
