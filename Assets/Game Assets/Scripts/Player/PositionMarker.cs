@@ -18,7 +18,7 @@ public class PositionMarker : MonoBehaviour
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, 100f, groundLayer))
+            if (Physics.Raycast(ray, out hit, 500f, groundLayer))
             {
                 markerObject.transform.position = hit.point;
                 EventController.TriggerEvent(GameEvent.EVENT_POSITION_MARKED, markerObject.transform.position);
