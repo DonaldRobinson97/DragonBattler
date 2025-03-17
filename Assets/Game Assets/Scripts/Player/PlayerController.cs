@@ -5,8 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private Rigidbody rb;
     [SerializeField] private float moveSpeed = 10f;
-    [SerializeField] private float lookDuration = 0.1f;
-    private float duration = 1f;
+    [SerializeField] private float lookDuration = 10f;
+    [SerializeField] private Animator _animator;
     private Tweener moveTweener;
 
     #region Unity
@@ -35,22 +35,39 @@ public class PlayerController : MonoBehaviour
     {
         if (moveTweener != null)
         {
+            _animator.SetBool("Walk", false);
             moveTweener.Kill();
         }
 
         float distance = Vector3.Distance(Pos, rb.transform.position);
-
         float duration = distance / moveSpeed;
 
-        this.transform.DOLookAt(Pos, duration * 0.25f).OnComplete(
+        float angleDiff = Mathf.Abs(Mathf.DeltaAngle(transform.eulerAngles.y, GetLookAtYRotation(transform.position, Pos)));
+        float turnDuration = angleDiff / lookDuration;
+
+        this.transform.DOLookAt(Pos, turnDuration).OnComplete(
             () =>
             {
-                moveTweener = rb.DOMove(Pos, duration);
+                _animator.SetBool("Walk", true);
+                moveTweener = rb.DOMove(Pos, duration).OnComplete(
+                    () =>
+                    {
+                        _animator.SetBool("Walk", false);
+                    }
+                );
             }
 
         );
-
     }
+
+    float GetLookAtYRotation(Vector3 from, Vector3 to)
+    {
+        Vector3 direction = to - from;
+        direction.y = 0;
+
+        return Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg;
+    }
+
     #endregion
 
     #region Callbacks
