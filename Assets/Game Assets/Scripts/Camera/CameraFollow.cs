@@ -8,7 +8,7 @@ public class CameraFollow : MonoBehaviour
 
     #region Unity
 
-    private void Update()
+    private void LateUpdate()
     {
         followPlayer();
     }

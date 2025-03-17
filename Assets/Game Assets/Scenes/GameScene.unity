@@ -288,7 +288,7 @@ Camera:
   m_BackGroundColor: {r: 0.21961538, g: 0.7022699, b: 0.7509433, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 0
+  m_FOVAxisMode: 1
   m_Iso: 200
   m_ShutterSpeed: 0.005
   m_Aperture: 16
@@ -308,7 +308,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 63.08829
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -334,13 +334,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.30070576, y: 0, z: 0, w: 0.953717}
-  m_LocalPosition: {x: 0, y: 29.3, z: -25.7}
+  m_LocalRotation: {x: 0.2840153, y: 0, z: 0, w: 0.95881975}
+  m_LocalPosition: {x: 0, y: 25, z: -20}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 35, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 33, y: 0, z: 0}
 --- !u!114 &963194229
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -354,16 +354,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1307401524}
-  smoothSpeed: 1.5
-  offset: {x: 0, y: 30, z: -25}
+  smoothSpeed: 100
+  offset: {x: 0, y: 25, z: -20}
 --- !u!4 &1307401524 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8705529057030127010, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
-  m_PrefabInstance: {fileID: 3297816689923291090}
-  m_PrefabAsset: {fileID: 0}
---- !u!54 &1307401526 stripped
-Rigidbody:
-  m_CorrespondingSourceObject: {fileID: 6789667269452088267, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
   m_PrefabInstance: {fileID: 3297816689923291090}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1774053697
@@ -622,10 +617,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 492388936181654783, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
-      propertyPath: rb
-      value: 
-      objectReference: {fileID: 1307401526}
     - target: {fileID: 2655848170374712976, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
       propertyPath: m_Name
       value: Player
