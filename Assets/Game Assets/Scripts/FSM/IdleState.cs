@@ -13,6 +13,8 @@ public class IdleState : State
     public void Enter()
     {
         Debug.Log("Entered IdleState");
+        enemy.TailTrailToggle(false);
+
         targetPosition = enemy.GetRandomPosition();
         enemy.detectMode = true;
     }

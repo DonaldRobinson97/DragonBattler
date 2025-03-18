@@ -1,4 +1,5 @@
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 
 public class PlayerCombatHandler : MonoBehaviour, IDamageable
@@ -17,6 +18,9 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int FireAttackDamage = 20;
     [SerializeField] private int MeleeAttackDamage = 10;
+    [SerializeField] private ParticleSystem FireParticleSystem;
+    [SerializeField] private ParticleSystem SlashParticleSystem;
+    [SerializeField] private PlayerController controller;
 
     #region Unity
     private void OnEnable()
@@ -88,12 +92,16 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
         if (canAttack)
         {
             Debug.Log("Fire attack");
+            FireParticleSystem.Play();
             _animator.SetTrigger("FireAttack");
+
+            controller.StopMovement();
 
             Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
 
             foreach (Collider enemy in hitEnemies)
             {
+                controller.MoveMarkedObject(enemy.transform.position);
                 enemy.GetComponent<EnemyController>()?.TakeDamage(FireAttackDamage);
             }
 
@@ -106,12 +114,16 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
         if (canAttack)
         {
             Debug.Log("Melee Attack");
+            SlashParticleSystem.Play();
             _animator.SetTrigger("MeleeAttack");
+
+            controller.StopMovement();
 
             Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
 
             foreach (Collider enemy in hitEnemies)
             {
+                controller.MoveMarkedObject(enemy.transform.position);
                 enemy.GetComponent<EnemyController>()?.TakeDamage(FireAttackDamage);
             }
 

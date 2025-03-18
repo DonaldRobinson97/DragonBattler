@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class AttackState : State
 {
@@ -12,6 +13,8 @@ public class AttackState : State
     public void Enter()
     {
         Debug.Log("Entered AttackState");
+        enemy.TailTrailToggle(true);
+        enemy.ToggleAttackAura(true);
     }
 
     public void Update()
@@ -23,6 +26,9 @@ public class AttackState : State
     public void Exit()
     {
         Debug.Log("Exit AttackState");
+        enemy.TailTrailToggle(false);
+        enemy.ToggleAttackAura(false);
+
     }
 
     #region Private
@@ -41,7 +47,7 @@ public class AttackState : State
 
                 if (randAttack == 1)
                 {
-                    enemy.enemyAnimator.SetTrigger("Attack");
+                    enemy.enemyAnimator.SetTrigger("Attack2");
                 }
                 else
                 {

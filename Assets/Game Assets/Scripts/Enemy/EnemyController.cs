@@ -30,6 +30,8 @@ public class EnemyController : MonoBehaviour, IDamageable
     public float attackTimer = 0f;
     public int PrimaryAttackDamage = 10;
     public int SecondaryAttackDamage = 15;
+    [SerializeField] private TrailRenderer tailTrail;
+    [SerializeField] private ParticleSystem AttackAuraParticle;
 
     [Header("Health Components")]
     private int currentHealth = 100;
@@ -48,6 +50,9 @@ public class EnemyController : MonoBehaviour, IDamageable
 
         currentHealth = maxHealth;
         healthHandler.SetHealth(currentHealth, maxHealth);
+
+        TailTrailToggle(false);
+        ToggleAttackAura(false);
     }
 
     private void Update()
@@ -76,6 +81,17 @@ public class EnemyController : MonoBehaviour, IDamageable
             EventController.TriggerEvent(GameEvent.EVENT_GAME_ENDED, true);
         }
     }
+
+    public void TailTrailToggle(bool toggle)
+    {
+        tailTrail.enabled = toggle;
+    }
+
+    public void ToggleAttackAura(bool toggle)
+    {
+        AttackAuraParticle.gameObject.SetActive(toggle);
+    }
+
 
     public PlayerController DetectPlayer()
     {

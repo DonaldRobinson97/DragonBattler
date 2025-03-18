@@ -49,8 +49,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger Hit: " + other.name);
         if (other.CompareTag(EnemyTag))
         {
+            MoveMarkedObject(other.transform.position);
             StopMovement();
         }
     }
@@ -61,6 +63,19 @@ public class PlayerController : MonoBehaviour
     {
         playerCombatHandler.TakeDamage(damage);
     }
+
+    public void MoveMarkedObject(Vector3 newPos)
+    {
+        markerObject.transform.position = newPos;
+    }
+
+    public void StopMovement()
+    {
+        isMoving = false;
+        _animator.SetBool("Walk", false);
+        rb.velocity = Vector3.zero;
+    }
+
 
     #endregion
 
@@ -82,12 +97,6 @@ public class PlayerController : MonoBehaviour
         _animator.SetBool("Walk", true);
     }
 
-    private void StopMovement()
-    {
-        isMoving = false;
-        _animator.SetBool("Walk", false);
-        rb.velocity = Vector3.zero;
-    }
 
     private void FaceTarget()
     {
