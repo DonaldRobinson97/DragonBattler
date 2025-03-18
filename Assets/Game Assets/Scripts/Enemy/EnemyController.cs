@@ -73,6 +73,7 @@ public class EnemyController : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             _stateMachine.ChangeState(_dieState);
+            EventController.TriggerEvent(GameEvent.EVENT_GAME_ENDED, true);
         }
     }
 
@@ -85,6 +86,11 @@ public class EnemyController : MonoBehaviour, IDamageable
         if (colliders.Length > 0)
         {
             newPlayer = colliders[0].GetComponent<PlayerController>();
+
+            if (!newPlayer.combatHandler.isAlive)
+            {
+                newPlayer = null;
+            }
         }
 
         return newPlayer;

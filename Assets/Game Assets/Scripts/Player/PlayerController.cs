@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = false;
     [SerializeField] private PlayerCombatHandler playerCombatHandler;
+    public PlayerCombatHandler combatHandler => playerCombatHandler;
 
     #region Unity
     private void OnEnable()

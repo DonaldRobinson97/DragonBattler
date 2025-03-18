@@ -3,4 +3,5 @@ public enum GameEvent
     EVENT_POSITION_MARKED,
     EVENT_ATTACK_FIRE,
     EVENT_ATTACK_MELEE,
+    EVENT_GAME_ENDED,
 }

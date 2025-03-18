@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class PlayerCombatHandler : MonoBehaviour, IDamageable
 {
-    [SerializeField] private bool isAlive = true;
+    public bool isAlive = true;
     [SerializeField] private Animator _animator;
     private bool canAttack = true;
 
@@ -42,15 +42,21 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     #region Public
     public void TakeDamage(int damage)
     {
+        if (!isAlive)
+        {
+            return;
+        }
+
         currentHealth -= damage;
         _animator.SetTrigger("Hit");
-        
+
         healthHandler.SetHealth(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
         {
             isAlive = false;
             Debug.Log("Player is dead");
+            EventController.TriggerEvent(GameEvent.EVENT_GAME_ENDED, false);
         }
     }
     #endregion
