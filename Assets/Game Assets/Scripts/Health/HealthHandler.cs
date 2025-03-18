@@ -29,8 +29,8 @@ public class HealthHandler : MonoBehaviour
 
         if (normalizedHealth > 0)
         {
-            mainBar.fillAmount = normalizedHealth;
-            EaseBar.DOFillAmount(normalizedHealth, EaseDuration);
+            mainBar.DOFillAmount(normalizedHealth, EaseDuration).SetDelay(EaseDuration);
+            EaseBar.DOFillAmount(normalizedHealth, EaseDuration).SetDelay(EaseDuration * 2f);
         }
         else
         {
