@@ -12,6 +12,12 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     [SerializeField] private int maxHealth;
     private int currentHealth;
 
+    [Header("Attack Settings")]
+    [SerializeField] private float attackRange = 1f;
+    [SerializeField] private LayerMask enemyLayer;
+    [SerializeField] private int FireAttackDamage = 20;
+    [SerializeField] private int MeleeAttackDamage = 10;
+
     #region Unity
     private void OnEnable()
     {
@@ -43,12 +49,10 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     #region Public
     public void TakeDamage(int damage)
     {
-        if (currentHealth > 0)
-        {
-            currentHealth -= damage;
-            healthHandler.SetHealth(currentHealth, maxHealth);
-        }
-        else
+        currentHealth -= damage;
+        healthHandler.SetHealth(currentHealth, maxHealth);
+        
+        if (currentHealth <= 0)
         {
             isAlive = false;
             Debug.Log("Player is dead");
@@ -84,6 +88,14 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
         {
             Debug.Log("Fire attack");
             _animator.SetTrigger("FireAttack");
+
+            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+
+            foreach (Collider enemy in hitEnemies)
+            {
+                enemy.GetComponent<EnemyController>()?.TakeDamage(FireAttackDamage);
+            }
+
             LockAtack(2f);
         }
     }

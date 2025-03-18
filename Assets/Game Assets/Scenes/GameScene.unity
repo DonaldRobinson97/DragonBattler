@@ -242,7 +242,7 @@ GameObject:
   m_Component:
   - component: {fileID: 302620390}
   m_Layer: 0
-  m_Name: ===========Canvases============
+  m_Name: =====Canvases=====
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1044,7 +1044,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2054962898}
   m_Layer: 0
-  m_Name: ==============Utilities==============
+  m_Name: =====Utilities=====
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1178,6 +1178,14 @@ PrefabInstance:
       propertyPath: markerObject
       value: 
       objectReference: {fileID: 1387747443}
+    - target: {fileID: 1799239690546256298, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
+      propertyPath: attackRange
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1799239690546256298, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
+      propertyPath: enemyLayer.m_Bits
+      value: 128
+      objectReference: {fileID: 0}
     - target: {fileID: 2655848170374712976, guid: ca8e4f53e05ad144eac3a00465184459, type: 3}
       propertyPath: m_Name
       value: Player
@@ -1278,14 +1286,6 @@ PrefabInstance:
     - target: {fileID: 4564371612067712818, guid: 22f9b2ce54a1ba84493ac70c55ed2fd9, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 4564371612067712818, guid: 22f9b2ce54a1ba84493ac70c55ed2fd9, type: 3}
-      propertyPath: m_Layer
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: 8203688703663824197, guid: 22f9b2ce54a1ba84493ac70c55ed2fd9, type: 3}
-      propertyPath: m_IsTrigger
-      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

@@ -14,8 +14,10 @@ public class PlayerController : MonoBehaviour
     [Header("Position Marker")]
     public LayerMask groundLayer;
     [SerializeField] private ParticleSystem markerObject;
+    private Vector3 targetPosition;
+    private bool isMoving = false;
 
-   
+
 
     #region Unity
     private void OnEnable()
@@ -26,14 +28,18 @@ public class PlayerController : MonoBehaviour
     {
         moveTweener.SetAutoKill();
         markerObject.transform.position = Vector3.zero;
+        targetPosition = transform.position;
     }
 
     private void Update()
     {
         ClickTarget();
         FaceTarget();
+    }
 
-      
+    private void FixedUpdate()
+    {
+        MovePlayer();
     }
 
     private void OnDisable()
@@ -55,21 +61,44 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Private
-    private void MovePlayer(Vector3 Pos)
+    // private void MovePlayer(Vector3 Pos)
+    // {
+    //     stopWalk();
+
+    //     float distance = Vector3.Distance(Pos, rb.transform.position);
+    //     float duration = distance / moveSpeed;
+
+    //     _animator.SetBool("Walk", true);
+    //     moveTweener = rb.DOMove(Pos, duration).OnComplete(
+    //         () =>
+    //         {
+    //             _animator.SetBool("Walk", false);
+    //         }
+    //     );
+    // }
+
+    private void MovePlayer()
     {
-        stopWalk();
+        if (!isMoving) return;
 
-        float distance = Vector3.Distance(Pos, rb.transform.position);
-        float duration = distance / moveSpeed;
+        Vector3 direction = (targetPosition - rb.position).normalized;
+        Vector3 newPosition = rb.position + direction * moveSpeed * Time.fixedDeltaTime;
 
+        if (Vector3.Distance(rb.position, targetPosition) < 0.5f)
+        {
+            StopMovement();
+            return;
+        }
+
+        rb.MovePosition(newPosition);
         _animator.SetBool("Walk", true);
-        moveTweener = rb.DOMove(Pos, duration).OnComplete(
-            () =>
-            {
-                _animator.SetBool("Walk", false);
-            }
-        );
+    }
 
+    private void StopMovement()
+    {
+        isMoving = false;
+        _animator.SetBool("Walk", false);
+        rb.velocity = Vector3.zero;
     }
 
     private void FaceTarget()
@@ -93,7 +122,8 @@ public class PlayerController : MonoBehaviour
             {
                 markerObject.transform.position = hit.point;
                 markerObject.Play();
-                MovePlayer(hit.point);
+                targetPosition = hit.point;
+                isMoving = true;
             }
         }
     }

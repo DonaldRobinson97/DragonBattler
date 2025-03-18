@@ -32,11 +32,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     #region Public 
     public void TakeDamage(int damage)
     {
-        if (Health > 0)
-        {
-            Health -= damage;
-        }
-        else
+        Health -= damage;
+        
+        if (Health <= 0)
         {
             _stateMachine.ChangeState(_dieState);
         }
