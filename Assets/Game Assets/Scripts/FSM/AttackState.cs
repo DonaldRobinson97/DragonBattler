@@ -43,15 +43,17 @@ public class AttackState : State
             {
                 int randAttack = Random.Range(0, 2);
 
-                _playerController.DealDamage(randAttack == 1 ? enemy.PrimaryAttackDamage : enemy.SecondaryAttackDamage);
-
                 if (randAttack == 1)
                 {
-                    enemy.enemyAnimator.SetTrigger("Attack2");
+                    enemy.enemyAnimator.SetTrigger("Attack"); // Tail Attack
+                    _playerController.combatHandler.PlayeMeteorParticle();
+                    _playerController.DealDamage(enemy.PrimaryAttackDamage);
                 }
                 else
                 {
-                    enemy.enemyAnimator.SetTrigger("Attack2");
+                    enemy.enemyAnimator.SetTrigger("Attack");
+                    _playerController.combatHandler.PlayeMeteorParticle();
+                    _playerController.DealDamage(enemy.SecondaryAttackDamage);
                 }
             }
             else

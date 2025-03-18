@@ -92,7 +92,6 @@ public class EnemyController : MonoBehaviour, IDamageable
         AttackAuraParticle.gameObject.SetActive(toggle);
     }
 
-
     public PlayerController DetectPlayer()
     {
         Collider[] colliders = Physics.OverlapSphere(transform.position, detectRadius, PlayerLayer);

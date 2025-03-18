@@ -11,6 +11,7 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     [Header("Health Handler")]
     [SerializeField] private HealthHandler healthHandler;
     [SerializeField] private int maxHealth;
+    [SerializeField] private ParticleSystem MetoerParticleSystem;
     private int currentHealth;
 
     [Header("Attack Settings")]
@@ -62,6 +63,11 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
             Debug.Log("Player is dead");
             EventController.TriggerEvent(GameEvent.EVENT_GAME_ENDED, false);
         }
+    }
+
+    public void PlayeMeteorParticle()
+    {
+        MetoerParticleSystem.Play();
     }
     #endregion
 
