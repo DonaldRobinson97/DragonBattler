@@ -99,6 +99,7 @@ MonoBehaviour:
   Health: 100
   movementSpeed: 10
   TurnSpeed: 10
+  _animator: {fileID: 4126056889256222872}
 --- !u!1001 &4126056889265545940
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -160,6 +161,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 70f277dcf2cdfdd4db7ee0ca76e07767, type: 3}
+--- !u!95 &4126056889256222872 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 9585228, guid: 70f277dcf2cdfdd4db7ee0ca76e07767, type: 3}
+  m_PrefabInstance: {fileID: 4126056889265545940}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4126056889265873072 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 459364, guid: 70f277dcf2cdfdd4db7ee0ca76e07767, type: 3}

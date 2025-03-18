@@ -51,7 +51,7 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     {
         currentHealth -= damage;
         healthHandler.SetHealth(currentHealth, maxHealth);
-        
+
         if (currentHealth <= 0)
         {
             isAlive = false;
@@ -106,6 +106,14 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
         {
             Debug.Log("Melee Attack");
             _animator.SetTrigger("MeleeAttack");
+
+            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+
+            foreach (Collider enemy in hitEnemies)
+            {
+                enemy.GetComponent<EnemyController>()?.TakeDamage(FireAttackDamage);
+            }
+            
             LockAtack(1f);
         }
     }

@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private int Health = 100;
     [SerializeField] private float movementSpeed = 10f;
     [SerializeField] private float TurnSpeed = 10f;
+    [SerializeField] private Animator _animator;
 
     #region Unity
     private void Start()
@@ -32,8 +33,9 @@ public class EnemyController : MonoBehaviour, IDamageable
     #region Public 
     public void TakeDamage(int damage)
     {
+        _animator.SetTrigger("Hit");
         Health -= damage;
-        
+
         if (Health <= 0)
         {
             _stateMachine.ChangeState(_dieState);

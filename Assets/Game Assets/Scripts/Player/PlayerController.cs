@@ -17,8 +17,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 targetPosition;
     private bool isMoving = false;
 
-
-
     #region Unity
     private void OnEnable()
     {
@@ -61,22 +59,6 @@ public class PlayerController : MonoBehaviour
     #endregion
 
     #region Private
-    // private void MovePlayer(Vector3 Pos)
-    // {
-    //     stopWalk();
-
-    //     float distance = Vector3.Distance(Pos, rb.transform.position);
-    //     float duration = distance / moveSpeed;
-
-    //     _animator.SetBool("Walk", true);
-    //     moveTweener = rb.DOMove(Pos, duration).OnComplete(
-    //         () =>
-    //         {
-    //             _animator.SetBool("Walk", false);
-    //         }
-    //     );
-    // }
-
     private void MovePlayer()
     {
         if (!isMoving) return;
@@ -137,7 +119,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    float GetLookAtYRotation(Vector3 from, Vector3 to)
+    private float GetLookAtYRotation(Vector3 from, Vector3 to)
     {
         Vector3 direction = to - from;
         direction.y = 0;
