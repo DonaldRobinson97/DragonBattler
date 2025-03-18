@@ -12,6 +12,12 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private float movementSpeed = 10f;
     [SerializeField] private float TurnSpeed = 10f;
     [SerializeField] private Animator _animator;
+    [SerializeField] private Transform[] wayPoints;
+
+    public Rigidbody enemyRB => rigidbody;
+    public float moveSpeed = 8f;
+    public float rotationSpeed = 10f;
+    public Animator enemyAnimator => _animator;
 
     #region Unity
     private void Start()
@@ -26,7 +32,7 @@ public class EnemyController : MonoBehaviour, IDamageable
 
     private void Update()
     {
-        // _stateMachine.currentState.Update();
+        _stateMachine.currentState.Update();
     }
     #endregion
 
@@ -40,6 +46,11 @@ public class EnemyController : MonoBehaviour, IDamageable
         {
             _stateMachine.ChangeState(_dieState);
         }
+    }
+
+    public Vector3 GetRandomPosition()
+    {
+        return wayPoints[Random.Range(0, wayPoints.Length)].position;
     }
     #endregion
 
