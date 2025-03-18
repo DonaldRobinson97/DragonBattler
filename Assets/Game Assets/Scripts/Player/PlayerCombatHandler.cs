@@ -19,21 +19,28 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     [SerializeField] private LayerMask enemyLayer;
     [SerializeField] private int FireAttackDamage = 20;
     [SerializeField] private int MeleeAttackDamage = 10;
+    [SerializeField] private int FlightAttackDamage = 20;
     [SerializeField] private ParticleSystem FireParticleSystem;
     [SerializeField] private ParticleSystem SlashParticleSystem;
+    [SerializeField] private ParticleSystem FlightParticleSystem;
     [SerializeField] private PlayerController controller;
+
+    private bool canGetHit = true;
+
 
     #region Unity
     private void OnEnable()
     {
         EventController.StartListening(GameEvent.EVENT_ATTACK_FIRE, OnFireAttackPressed);
         EventController.StartListening(GameEvent.EVENT_ATTACK_MELEE, OnMeleeAttackPressed);
+        EventController.StartListening(GameEvent.EVENT_ATTACK_FLIGHT, OnFlightAttackPressed);
     }
 
     private void OnDisable()
     {
         EventController.StopListening(GameEvent.EVENT_ATTACK_FIRE, OnFireAttackPressed);
         EventController.StopListening(GameEvent.EVENT_ATTACK_MELEE, OnMeleeAttackPressed);
+        EventController.StopListening(GameEvent.EVENT_ATTACK_FLIGHT, OnFlightAttackPressed);
     }
 
     private void Start()
@@ -53,7 +60,11 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
         }
 
         currentHealth -= damage;
-        _animator.SetTrigger("Hit");
+
+        if (canGetHit)
+        {
+            _animator.SetTrigger("Hit");
+        }
 
         healthHandler.SetHealth(currentHealth, maxHealth);
 
@@ -69,6 +80,11 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
     public void PlayeMeteorParticle()
     {
         MetoerParticleSystem.Play();
+    }
+
+    public void ToggleGetHit(bool toggle)
+    {
+        canGetHit = toggle;
     }
     #endregion
 
@@ -131,7 +147,37 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
             foreach (Collider enemy in hitEnemies)
             {
                 controller.MoveMarkedObject(enemy.transform.position);
-                enemy.GetComponent<EnemyController>()?.TakeDamage(FireAttackDamage);
+                enemy.GetComponent<EnemyController>()?.TakeDamage(MeleeAttackDamage);
+            }
+
+            LockAtack(1f);
+        }
+    }
+
+    private void OnFlightAttackPressed(object Args)
+    {
+        if (canAttack)
+        {
+            Debug.Log("Flight Attack");
+
+            // FlightParticleSystem.Play();
+
+            _animator.SetTrigger("FlightAttack");
+
+            controller.StopMovement();
+
+            Collider[] hitEnemies = Physics.OverlapSphere(transform.position, attackRange, enemyLayer);
+
+            foreach (Collider enemy in hitEnemies)
+            {
+                controller.MoveMarkedObject(enemy.transform.position);
+                EnemyController EController = enemy.GetComponent<EnemyController>();
+
+                EController?.TakeDamage(FlightAttackDamage);
+
+                EController?.PlayGetHitParticle();
+
+
             }
 
             LockAtack(1f);

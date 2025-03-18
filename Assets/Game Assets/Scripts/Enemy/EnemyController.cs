@@ -38,6 +38,7 @@ public class EnemyController : MonoBehaviour, IDamageable
     [SerializeField] private int maxHealth = 100;
     [SerializeField] private HealthHandler healthHandler;
     public bool isDead => currentHealth <= 0;
+    [SerializeField] private ParticleSystem GeHitParticles;
 
     #region Unity
     private void Start()
@@ -90,6 +91,11 @@ public class EnemyController : MonoBehaviour, IDamageable
     public void ToggleAttackAura(bool toggle)
     {
         AttackAuraParticle.gameObject.SetActive(toggle);
+    }
+
+    public void PlayGetHitParticle()
+    {
+        GeHitParticles.Play();
     }
 
     public PlayerController DetectPlayer()
