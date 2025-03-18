@@ -37,19 +37,14 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
         healthHandler.SetHealth(currentHealth, maxHealth);
     }
 
-    void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.D))
-        {
-            TakeDamage(20);
-        }
-    }
     #endregion
 
     #region Public
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        _animator.SetTrigger("Hit");
+        
         healthHandler.SetHealth(currentHealth, maxHealth);
 
         if (currentHealth <= 0)
@@ -113,7 +108,7 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
             {
                 enemy.GetComponent<EnemyController>()?.TakeDamage(FireAttackDamage);
             }
-            
+
             LockAtack(1f);
         }
     }

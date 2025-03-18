@@ -345,3 +345,4 @@ MonoBehaviour:
   mainBar: {fileID: 1059613642848475127}
   EaseBar: {fileID: 1788474087814038285}
   EaseDuration: 0.15
+  originalScale: 0.005

@@ -9,17 +9,14 @@ public class DieState : State
     }
     public void Enter()
     {
-        Debug.Log("Entered Diestate");
+        enemyController.enemyAnimator.SetBool("Die", true);
     }
 
     public void Update()
     {
-        Debug.Log("Update Diestate");
     }
 
     public void Exit()
     {
-        Debug.Log("Exit Diestate");
-
     }
 }

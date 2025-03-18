@@ -13,9 +13,9 @@ GameObject:
   - component: {fileID: 2771729744246218728}
   - component: {fileID: 492388936181654783}
   - component: {fileID: 1799239690546256298}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -106,6 +106,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   markerObject: {fileID: 0}
+  playerCombatHandler: {fileID: 1799239690546256298}
 --- !u!114 &1799239690546256298
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122,6 +123,12 @@ MonoBehaviour:
   _animator: {fileID: 8111686315944717343}
   healthHandler: {fileID: 3983262942350724653}
   maxHealth: 200
+  attackRange: 8
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 128
+  FireAttackDamage: 20
+  MeleeAttackDamage: 10
 --- !u!1001 &391551441564423971
 PrefabInstance:
   m_ObjectHideFlags: 0

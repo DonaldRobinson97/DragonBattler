@@ -14,6 +14,7 @@ public class IdleState : State
     {
         Debug.Log("Entered IdleState");
         targetPosition = enemy.GetRandomPosition();
+        enemy.detectMode = true;
     }
 
     public void Update()
@@ -33,9 +34,10 @@ public class IdleState : State
 
     public void Exit()
     {
-
+        enemy.detectMode = false;
+        enemy.enemyAnimator.SetBool("Walk", false);
+        reachedTarget = false;
     }
-
     #endregion
 
     #region Private 

@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private ParticleSystem markerObject;
     private Vector3 targetPosition;
     private bool isMoving = false;
+    [SerializeField] private PlayerCombatHandler playerCombatHandler;
 
     #region Unity
     private void OnEnable()
@@ -49,12 +50,16 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag(EnemyTag))
         {
-            stopWalk();
+            StopMovement();
         }
     }
     #endregion
 
     #region Public 
+    public void DealDamage(int damage)
+    {
+        playerCombatHandler.TakeDamage(damage);
+    }
 
     #endregion
 
@@ -107,15 +112,6 @@ public class PlayerController : MonoBehaviour
                 targetPosition = hit.point;
                 isMoving = true;
             }
-        }
-    }
-
-    private void stopWalk()
-    {
-        if (moveTweener != null)
-        {
-            moveTweener.Kill();
-            _animator.SetBool("Walk", false);
         }
     }
 
