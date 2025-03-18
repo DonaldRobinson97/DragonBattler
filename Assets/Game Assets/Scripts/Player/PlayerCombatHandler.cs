@@ -60,6 +60,7 @@ public class PlayerCombatHandler : MonoBehaviour, IDamageable
         if (currentHealth <= 0)
         {
             isAlive = false;
+            _animator.SetTrigger("Die");
             Debug.Log("Player is dead");
             EventController.TriggerEvent(GameEvent.EVENT_GAME_ENDED, false);
         }

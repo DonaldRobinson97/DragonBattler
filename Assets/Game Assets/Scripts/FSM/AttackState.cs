@@ -45,13 +45,13 @@ public class AttackState : State
 
                 if (randAttack == 1)
                 {
-                    enemy.enemyAnimator.SetTrigger("Attack"); // Tail Attack
+                    enemy.enemyAnimator.SetTrigger("Attack"); // Heavy attack
                     _playerController.combatHandler.PlayeMeteorParticle();
                     _playerController.DealDamage(enemy.PrimaryAttackDamage);
                 }
                 else
                 {
-                    enemy.enemyAnimator.SetTrigger("Attack");
+                    enemy.enemyAnimator.SetTrigger("Attack2"); // Tail Attack
                     _playerController.combatHandler.PlayeMeteorParticle();
                     _playerController.DealDamage(enemy.SecondaryAttackDamage);
                 }

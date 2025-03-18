@@ -58,7 +58,7 @@ public class LevelEndPanel : MonoBehaviour
 
         mainContainer.transform.localScale = Vector3.zero;
         mainContainer.SetActive(true);
-        mainContainer.transform.DOScale(Vector3.one, TweenDuration).SetEase(TweenEase);
+        mainContainer.transform.DOScale(Vector3.one, TweenDuration).SetEase(TweenEase).SetDelay(TweenDuration * 2f);
     }
     #endregion
 
