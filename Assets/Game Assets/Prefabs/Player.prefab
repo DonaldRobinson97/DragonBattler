@@ -125,7 +125,7 @@ MonoBehaviour:
   healthHandler: {fileID: 3983262942350724653}
   maxHealth: 150
   MetoerParticleSystem: {fileID: 6080223653014878544}
-  attackRange: 8
+  attackRange: 10
   enemyLayer:
     serializedVersion: 2
     m_Bits: 128

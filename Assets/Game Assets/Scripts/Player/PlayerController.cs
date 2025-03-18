@@ -49,13 +49,19 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Trigger Hit: " + other.name);
-        if (other.CompareTag(EnemyTag))
-        {
-            MoveMarkedObject(other.transform.position);
-            StopMovement();
-        }
+        // Debug.Log("Trigger Hit: " + other.name);
+        // if (other.CompareTag(EnemyTag))
+        // {
+        //     MoveMarkedObject(other.transform.position);
+        //     StopMovement();
+        // }
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        StopMovement();
+    }
+
     #endregion
 
     #region Public 
