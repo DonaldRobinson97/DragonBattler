@@ -21,6 +21,7 @@ public class LevelEndPanel : MonoBehaviour
     private void Start()
     {
         mainContainer.SetActive(false);
+        panelTrigerred = false;
     }
 
     private void OnEnable()
@@ -64,8 +65,12 @@ public class LevelEndPanel : MonoBehaviour
     #region Callbacks
     private void OnGameEnded(object Args)
     {
-        bool isWon = (bool)Args;
-        ShowPanel(isWon);
+        if (!panelTrigerred)
+        {
+            bool isWon = (bool)Args;
+            ShowPanel(isWon);
+            panelTrigerred = true;
+        }
     }
     #endregion
 }
